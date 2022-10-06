@@ -1,0 +1,249 @@
+
+CREATE TABLE [CASE]
+( 
+	[Case_Id]            uniqueidentifier  NULL ,
+	[Hpzone_Number]      integer  NULL ,
+	[Forename]           varchar(64)  NULL ,
+	[Surname]            varchar(64)  NULL ,
+	[Date_of_Birth]      datetime  NULL ,
+	[Age]                integer  NULL ,
+	[Gender]             ENUM('MALE', 'FEMALE', 'NONBINARY', 'OTHER')  NULL ,
+	[Gender_Other_Details] varchar(64)  NULL ,
+	[Is_Gender_Different_to_Sex_at_Birth] bit  NULL ,
+	[Sexual_Orientation] ENUM('GAY_OR_LESBIAN', 'STRAIGHT', 'BISEXUAL', 'OTHER')  NULL ,
+	[Sexual_Orientation_Other_Details] varchar(64)  NULL ,
+	[Ethnicity]          varchar(64)  NULL ,
+	[Birth_Country]      varchar(64)  NULL ,
+	[Telephone]          varchar(16)  NULL ,
+	[Postcode]           varchar(16)  NULL ,
+	[Interviewer_Name]   varchar(64)  NULL ,
+	[Interview_Date]     datetime  NULL ,
+	[Symptom_Onset_Date] datetime  NULL ,
+	[Symptom_Resolved_Date] datetime  NULL ,
+	[Exposure_Details_Self_Reported] text  NULL ,
+	[Is_Happy_to_Be_Contacted] bit  NULL ,
+	[sys_Case_id]        char(18)  NOT NULL 
+)
+go
+
+CREATE TABLE [CASE CONTACT]
+( 
+	[Last_Contact_Date]  datetime  NULL ,
+	[Relationship_of_Contact_to_Case] varchar(64)  NULL ,
+	[Type_is_Sexual]     bit  NULL ,
+	[Type_is_Household]  bit  NULL ,
+	[Type_is_Healthcare] bit  NULL ,
+	[Type_is_Workplace]  bit  NULL ,
+	[Type_is_Education]  bit  NULL ,
+	[Type_is_Social]     bit  NULL ,
+	[Type_is_Travel]     bit  NULL ,
+	[Type_is_Other]      bit  NULL ,
+	[Type_Other_Details] varchar(64)  NULL ,
+	[Location_is_Workplace] bit  NULL ,
+	[Location_is_Hospital] bit  NULL ,
+	[Location_is_Home]   bit  NULL ,
+	[Location_is_School] bit  NULL ,
+	[Location_is_Bar_or_Restaurant] bit  NULL ,
+	[Location_is_Nightclub_or_Private_Party] bit  NULL ,
+	[Location_is_Other]  bit  NULL ,
+	[Location_Other_Details] varchar(64)  NULL ,
+	[Location_Name_And_Address] text  NULL ,
+	[sys_Case_id]        char(18)  NULL ,
+	[sys_Case_Contact]   char(18)  NOT NULL ,
+	[sys_Contact_Id]     char(18)  NULL 
+)
+go
+
+CREATE TABLE [CONTACT]
+( 
+	[Contact_Id]         uniqueidentifier  NULL ,
+	[Forename]           varchar(64)  NULL ,
+	[Surname]            varchar(64)  NULL ,
+	[Telephone]          varchar(16)  NULL ,
+	[Address]            text  NULL ,
+	[Age]                integer  NULL ,
+	[Sex]                ENUM('MALE', 'FEMALE', 'OTHER', 'UNKNOWN')  NULL ,
+	[sys_Contact_Id]     char(18)  NOT NULL 
+)
+go
+
+CREATE TABLE [HEALTH]
+( 
+	[Has_Sti_Diagnosis]  bit  NULL ,
+	[Pregnancy_Status]   ENUM('PREGNANT', 'NOT_PREGNANT', 'UNKNOWN', 'NA')  NULL ,
+	[Hiv_Status]         ENUM('POSITIVE', 'NEGATIVE', 'UNKNOWN', 'PREFER_NOT_TO_SAY')  NULL ,
+	[Is_Taking_Hiv_Medication] bit  NULL ,
+	[Has_Undetectable_Hiv] bit  NULL ,
+	[Hiv_Prep_Status]    ENUM('YES_DAILY', 'YES_NONDAILY', 'NOT_CURRENTLY', 'NEVER')  NULL ,
+	[Smallpox_Vaccine_Status] ENUM('YES', 'NO', 'UNKNOWN')  NULL ,
+	[Other_Medical_Conditions_Details] text  NULL ,
+	[Regular_Medication_Details] text  NULL ,
+	[sys_Case_id]        char(18)  NULL ,
+	[sys_Health_Id]      char(18)  NOT NULL 
+)
+go
+
+CREATE TABLE [OCCUPATION]
+( 
+	[Is_Healthcare]      bit  NULL ,
+	[Is_Education_or_Childcare] bit  NULL ,
+	[Is_Working_With_Animals] bit  NULL ,
+	[Is_Airline_Crew]    bit  NULL ,
+	[Is_Not_Working]     bit  NULL ,
+	[Is_Other_Occupation] bit  NULL ,
+	[Other_Occupation_Details] varchar(64)  NULL ,
+	[sys_Case_id]        char(18)  NULL ,
+	[sys_Occupation_Id]  char(18)  NOT NULL 
+)
+go
+
+CREATE TABLE [PET]
+( 
+	[Species]            varchar(64)  NULL ,
+	[N_Animals]          integer  NULL ,
+	[Is_Owner]           bit  NULL ,
+	[Owner_Name]         varchar(64)  NULL ,
+	[sys_Case_id]        char(18)  NULL ,
+	[sys_Pet_Id]         char(18)  NOT NULL 
+)
+go
+
+CREATE TABLE [SEXUAL ACTIVITY]
+( 
+	[N_Partners_3_Months] integer  NULL ,
+	[N_Partners_3_Months_Category] integer  NULL ,
+	[N_Partners_21_Days] integer  NULL ,
+	[Partner_New]        ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Oneoff]     ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Occasional] ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Established] ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Non_UK_Resident] ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Female]     ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Met_Via_App] ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Partner_Met_Via_Cruising_Grounds] ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Group]              ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Chemsex]            ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[Location_Different_Than_Usual_of_Residence] ENUM('YES_MEN', 'YES_WOMEN', 'YES_BOTH', 'NO', 'UNKNOWN')  NULL ,
+	[sys_Sexual_Activity_ID] char(18)  NOT NULL ,
+	[sys_Case_id]        char(18)  NULL 
+)
+go
+
+CREATE TABLE [TRAVEL]
+( 
+	[Is_International]   bit  NULL ,
+	[Country_Name]       varchar(64)  NULL ,
+	[Town_or_City_Name]  varchar(64)  NULL ,
+	[Overnight_Address]  text  NULL ,
+	[Arrival_Date]       datetime  NULL ,
+	[Arrival_Transport]  varchar(64)  NULL ,
+	[Arrival_Flight_Info] varchar(64)  NULL ,
+	[Departure_Date]     datetime  NULL ,
+	[Departure_Transport] varchar(64)  NULL ,
+	[Departure_Flight_Info] varchar(64)  NULL ,
+	[sys_Case_id]        char(18)  NULL ,
+	[sys_Travel_Id]      char(18)  NOT NULL 
+)
+go
+
+CREATE TABLE [VISIT]
+( 
+	[Is_Sexual_Activity] bit  NULL ,
+	[Attendance_Date]    datetime  NULL ,
+	[Setting]            varchar(64)  NULL ,
+	[Location_Name_and_Address] text  NULL ,
+	[sys_Case_id]        char(18)  NULL ,
+	[sys_Visit_Id]       char(18)  NOT NULL 
+)
+go
+
+ALTER TABLE [CASE]
+	ADD CONSTRAINT [XPKCase] PRIMARY KEY  CLUSTERED ([sys_Case_id] ASC)
+go
+
+ALTER TABLE [CASE CONTACT]
+	ADD CONSTRAINT [XPKCase_Contact] PRIMARY KEY  CLUSTERED ([sys_Case_Contact] ASC)
+go
+
+ALTER TABLE [CONTACT]
+	ADD CONSTRAINT [XPKContact] PRIMARY KEY  CLUSTERED ([sys_Contact_Id] ASC)
+go
+
+ALTER TABLE [HEALTH]
+	ADD CONSTRAINT [XPKHealth] PRIMARY KEY  CLUSTERED ([sys_Health_Id] ASC)
+go
+
+ALTER TABLE [OCCUPATION]
+	ADD CONSTRAINT [XPKOccupation] PRIMARY KEY  CLUSTERED ([sys_Occupation_Id] ASC)
+go
+
+ALTER TABLE [PET]
+	ADD CONSTRAINT [XPKPet] PRIMARY KEY  CLUSTERED ([sys_Pet_Id] ASC)
+go
+
+ALTER TABLE [SEXUAL ACTIVITY]
+	ADD CONSTRAINT [XPKSexual_Activity] PRIMARY KEY  CLUSTERED ([sys_Sexual_Activity_ID] ASC)
+go
+
+ALTER TABLE [TRAVEL]
+	ADD CONSTRAINT [XPKTravel] PRIMARY KEY  CLUSTERED ([sys_Travel_Id] ASC)
+go
+
+ALTER TABLE [VISIT]
+	ADD CONSTRAINT [XPKVisit] PRIMARY KEY  CLUSTERED ([sys_Visit_Id] ASC)
+go
+
+
+ALTER TABLE [CASE CONTACT]
+	ADD CONSTRAINT [R_2] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+ALTER TABLE [CASE CONTACT]
+	ADD CONSTRAINT [R_1] FOREIGN KEY ([sys_Contact_Id]) REFERENCES [CONTACT]([sys_Contact_Id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+
+ALTER TABLE [HEALTH]
+	ADD CONSTRAINT [R_3] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+
+ALTER TABLE [OCCUPATION]
+	ADD CONSTRAINT [R_5] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+
+ALTER TABLE [PET]
+	ADD CONSTRAINT [R_9] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+
+ALTER TABLE [SEXUAL ACTIVITY]
+	ADD CONSTRAINT [R_4] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+
+ALTER TABLE [TRAVEL]
+	ADD CONSTRAINT [R_7] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
+
+
+ALTER TABLE [VISIT]
+	ADD CONSTRAINT [R_8] FOREIGN KEY ([sys_Case_id]) REFERENCES [CASE]([sys_Case_id])
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION
+go
